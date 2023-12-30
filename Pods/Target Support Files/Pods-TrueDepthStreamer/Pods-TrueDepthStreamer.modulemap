@@ -1,0 +1,6 @@
+framework module Pods_TrueDepthStreamer {
+  umbrella header "Pods-TrueDepthStreamer-umbrella.h"
+
+  export *
+  module * { export * }
+}

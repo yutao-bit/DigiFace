@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (5.4.4)
+  - mobile-ffmpeg-full-gpl (4.4)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - SwiftGifOrigin (1.7.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - mobile-ffmpeg-full-gpl (~> 4.4)
+  - Moya (~> 14.0)
+  - SwiftGifOrigin (~> 1.7.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - mobile-ffmpeg-full-gpl
+    - Moya
+    - SwiftGifOrigin
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  mobile-ffmpeg-full-gpl: 77de728206f08f30c70f530b18abb4e8f6413eb6
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
+
+PODFILE CHECKSUM: 29e802a13d9618e4424ac1d5afc5ddbd12e3e8fa
+
+COCOAPODS: 1.10.0
