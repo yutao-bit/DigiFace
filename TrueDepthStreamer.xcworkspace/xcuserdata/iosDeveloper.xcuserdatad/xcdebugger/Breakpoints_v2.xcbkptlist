@@ -14,8 +14,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1520"
-            endingLineNumber = "1520"
+            startingLineNumber = "1528"
+            endingLineNumber = "1528"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1534"
-            endingLineNumber = "1534"
+            startingLineNumber = "1542"
+            endingLineNumber = "1542"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1552"
-            endingLineNumber = "1552"
+            startingLineNumber = "1560"
+            endingLineNumber = "1560"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1557"
-            endingLineNumber = "1557"
+            startingLineNumber = "1565"
+            endingLineNumber = "1565"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -15,7 +15,7 @@ class MainViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
         let jeremyGif = UIImage.gif(name: "headFront")
         let bl = Float((jeremyGif?.size.height)!) / Float((jeremyGif?.size.width)!)

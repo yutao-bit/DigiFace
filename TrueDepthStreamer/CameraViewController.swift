@@ -16,6 +16,11 @@ import SwiftGifOrigin
 
 @available(iOS 13.0, *)
 class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDelegate {
+    
+    private var savingFrame = ""
+    
+    
+    
 //    private var isAll = true
     private var frametot = 0
     private var frametotA = 0
@@ -172,6 +177,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             loginButton.setTitle("Login", for: .normal)
 
         }
+        //下面这段代码是在一个 iOS 应用中设置了一些手势识别器（Gesture Recognizers）。手势识别器用于捕捉用户在屏幕上的手势操作，比如点击、长按、缩放、双击、旋转和拖动等，并在这些手势发生时执行相应的方法（通常是在相应的 selector 方法中定义的操作）。
         let tapGestureJET = UITapGestureRecognizer(target: self, action: #selector(focusAndExposeTap))
         jetView.addGestureRecognizer(tapGestureJET)
         
@@ -180,6 +186,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         pressGestureJET.cancelsTouchesInView = false
         jetView.addGestureRecognizer(pressGestureJET)
         
+        //pinchGesture 是一个 UIPinchGestureRecognizer，添加到 cloudView 中，用于识别捏合手势（缩放）。当用户在 cloudView 上进行捏合手势操作时，会触发 handlePinch 方法。
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         cloudView.addGestureRecognizer(pinchGesture)
         
@@ -974,13 +981,14 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         print("sure stop!",frametot,frametotA)
         CameraViewController.cameraframe = "\(frametot)"
         self.view.makeToastActivityWithText(.center)
-        UIView.sharedlabel.text = "Saving"
+        UIView.sharedlabel.text = "Saving " + savingFrame
         startButton.isEnabled = false
         videoSaveQueue.async {
             let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             let ss0 = "-i \(path)/%d.JPG -r 20 -codec copy \(path)/g.mkv"
             print(ss0)
             MobileFFmpeg.execute("-i \(path)/%d.JPG -r 20 -codec copy \(path)/g.mkv")
+            
             MobileFFmpeg.execute("-i \(path)/%d.JPG -r 24 -vcodec libx264 -crf 8 -pix_fmt yuv420p  \(path)/g.mp4")
 //            if(self.isAll == true){
 //                MobileFFmpeg.execute("-i \(path)/%d.png -r 20 -codec copy \(path)/g2.mkv")

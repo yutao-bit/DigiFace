@@ -74,6 +74,8 @@ class LoginViewController: UIViewController{
         usernameText.layer.cornerRadius = 20
         passwordText.layer.cornerRadius = 20
         passwordText.isSecureTextEntry = true
+        usernameText.placeholder = "默认账号:admin"
+        passwordText.placeholder = "默认密码:123456"
     }
     
     
