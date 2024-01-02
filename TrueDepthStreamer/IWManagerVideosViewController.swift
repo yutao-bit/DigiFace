@@ -42,6 +42,8 @@ class IWManagerVideosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "视频管理"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            
         //  获取全部本地视频路径
         allVideosHolePaths = getAllVideoPaths()
         
@@ -110,7 +112,7 @@ class IWManagerVideosViewController: UIViewController {
         flowLayout.minimumLineSpacing = Margin
         flowLayout.minimumInteritemSpacing = Margin
         collectionView.register(videoCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         
         return collectionView
     }
@@ -122,7 +124,7 @@ class IWManagerVideosViewController: UIViewController {
         let chooseButton = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
         chooseButton.setTitle("选择", for: .normal)
         chooseButton.setTitle("取消", for: .selected)
-        chooseButton.setTitleColor(.blue, for: .normal)
+        chooseButton.setTitleColor(.yellow, for: .normal)
         chooseButton.addTarget(self, action: #selector(chooseButtonAction(btn:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: chooseButton)
     }
@@ -144,7 +146,7 @@ class IWManagerVideosViewController: UIViewController {
         countLabel.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         countLabel.clipsToBounds = true
         countLabel.layer.cornerRadius = 15
-        countLabel.backgroundColor = UIColor.red
+        countLabel.backgroundColor = UIColor.gray
         countLabel.textColor = UIColor.white
         countLabel.textAlignment = .center
         countLabel.text = "0"
@@ -178,11 +180,11 @@ class IWManagerVideosViewController: UIViewController {
     private func setBottomButtons(title: String, center: CGPoint) -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: view.bounds.width / 3, height: ViewHeight - 10))
         button.center = center
-        button.backgroundColor = .red
+        button.backgroundColor = .green
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
         button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         bottomView?.addSubview(button)
         return button
     }
@@ -271,12 +273,12 @@ class IWManagerVideosViewController: UIViewController {
                         case let .success(response):
                             print("sendfile succeed")
                             //解析数据
-                            self.view.makeToast("Upload Succeed",duration: 1.0, position: .center)
+                            self.view.makeToast("Upload Succeed",duration: 2.0, position: .center)
                             let data = try? response.mapString()
                             print(data ?? "")
                             break
                         case let .failure(error):
-                            self.view.makeToast("Upload Failed",duration: 1.0, position: .center)
+                            self.view.makeToast("Upload Failed",duration: 2.0, position: .center)
                             print(error.errorDescription)
                             break
                         }

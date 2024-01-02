@@ -17,23 +17,25 @@ import SwiftGifOrigin
 @available(iOS 13.0, *)
 class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDelegate {
     
-    private var savingFrame = ""
     
     
-    
-//    private var isAll = true
+    //    private var isAll = true
     private var frametot = 0
     private var frametotA = 0
     private var saving = false
+    private var savingPercentage = 0
     static var islogin = false
     private var jumpFrame = 0
     static var username = "user1"
     static var password = "123456"
     static var token = "test"
-    static var patientName = "test"
+    static var patientName = "例如：LiMing"
 
     // MARK: - Properties
     @IBOutlet weak private var startButton: UIButton!
+    private var startPressed = false
+    
+    @IBOutlet weak private var recordButton: UIButton!
 
     @IBOutlet weak private var uploadButton: UIButton!
     
@@ -203,7 +205,10 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         panOneFingerGesture.minimumNumberOfTouches = 1
         cloudView.addGestureRecognizer(panOneFingerGesture)
         
+        recordButton.layer.cornerRadius = 20
+        recordButton.isEnabled = false
         startButton.layer.cornerRadius = 20
+    
         uploadButton.layer.cornerRadius = 20
         uploadButton.backgroundColor = UIColor.green;
         uploadButton.isEnabled = true;
@@ -937,7 +942,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
        secondCount += 1
        print(avSpeech.isSpeaking)
         //  判断是否录制超时
-        if secondCount == MaxVideoRecordTime {
+        if secondCount >= MaxVideoRecordTime {
             timer?.invalidate()
             stop();
         }
@@ -964,7 +969,14 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         }
         return state
     }
-
+    
+    @objc func updateTimer() {
+        // 在这里执行你想要重复执行的操作
+        print("Timer fired!") // 这里可以是你的操作，比如更新 UI 或者执行其他任务
+        self.view.makeToastActivityWithText(.center)
+        UIView.sharedlabel.text = "AA：" + String(savingPercentage) + "%"
+        savingPercentage = savingPercentage + 1
+    }
     //暂停
     private func stop(){
         saving = false
@@ -981,44 +993,94 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         print("sure stop!",frametot,frametotA)
         CameraViewController.cameraframe = "\(frametot)"
         self.view.makeToastActivityWithText(.center)
-        UIView.sharedlabel.text = "Saving " + savingFrame
+        UIView.sharedlabel.text = "预计：" + String(frametotA / 5) + "S"
+        recordButton.isEnabled = false
         startButton.isEnabled = false
         videoSaveQueue.async {
+            /* 启动定时器，每隔 1 秒触发一次 updateLabel 方法
+            var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)*/
+            
             let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            
+            self.savingPercentage = 2//800.0 / Double(framecnt)
+            MobileFFmpeg.execute("-i \(path)/%d.PNG -r 20 -codec copy \(path)/d.mkv")
+            self.savingPercentage = self.savingPercentage + 100 / 7
+            
+            DispatchQueue.main.async {
+                usleep(1500000)
+                self.view.makeToastActivityWithText(.center)
+                //UIView.sharedlabel.text = "剩余：" + String(self.frametotA / 5 * 86 / 100) + "S"
+                UIView.sharedlabel.text = "|||..............."
+            }
+            
             let ss0 = "-i \(path)/%d.JPG -r 20 -codec copy \(path)/g.mkv"
             print(ss0)
             MobileFFmpeg.execute("-i \(path)/%d.JPG -r 20 -codec copy \(path)/g.mkv")
             
+            DispatchQueue.main.async {
+                usleep(1500000)
+                self.savingPercentage = self.savingPercentage + 200 / 7
+                //UIView.sharedlabel.text = "剩余：" + String(self.frametotA / 5 * 65 / 100) + "S"
+                UIView.sharedlabel.text = "|||||||..........."
+            }
+            
             MobileFFmpeg.execute("-i \(path)/%d.JPG -r 24 -vcodec libx264 -crf 8 -pix_fmt yuv420p  \(path)/g.mp4")
-//            if(self.isAll == true){
-//                MobileFFmpeg.execute("-i \(path)/%d.png -r 20 -codec copy \(path)/g2.mkv")
-//            }
+            //  if(self.isAll == true){
+            //      MobileFFmpeg.execute("-i \(path)/%d.png -r 20 -codec copy \(path)/g2.mkv")
+            //  }
             let ss1 = "-i \(path)/%d.PNG -r 20 -codec copy \(path)/d.mkv"
             print(ss1)
-            MobileFFmpeg.execute("-i \(path)/%d.PNG -r 20 -codec copy \(path)/d.mkv")
-            print("save ready");
+            
+            DispatchQueue.main.async {
+                self.savingPercentage = 100
+                UIView.sharedlabel.text = "||||||||||||||||||"
+            }
+            print("save ready");/**/
             usleep(2000000)
+            //timer.invalidate() // 停止定时器*/
+            
             DispatchQueue.main.async {
                 //UIApplication.shared.isIdleTimerDisabled = false//屏幕常亮关闭
+                self.recordButton.backgroundColor=UIColor.green
                 self.startButton.backgroundColor=UIColor.green
-                self.startButton.setTitle("Start", for: .normal)
+                self.recordButton.setTitle("Record", for: .normal)
                 self.uploadButton.backgroundColor=UIColor.green
                 self.uploadButton.isEnabled = true
                 self.clearCacheNovideo()
                 self.view.hideToastActivity()
-                self.view.makeToast("Save Succeed",duration: 1.0, position: .center)
+                //self.view.makeToast("已录制，请上传",duration: 1.0, position: .center)
+                self.recordButton.isEnabled = true
+                self.startPressed = false;
                 self.startButton.isEnabled = true
+                self.startButton.backgroundColor=UIColor.green
+                self.startButton.setTitle("Start", for: .normal)
                 self.uploadButton.isEnabled = true
                 self.ShowMyAlertController()
                 self.isRecording = false
                 self.imageView.removeFromSuperview()
                 self.LeftLevel = 0
                 self.RightLevel = 0
+                self.savingPercentage = 0
             }
         }
 
     }
 
+    //点击start
+    @IBAction
+    private func startProcess(_ sender:UIButton) {
+        if(startPressed == false){
+            startPressed = true;
+            self.startButton.backgroundColor = UIColor.gray
+            //self.startButton.isEnabled = false
+            self.startButton.setTitle("Stop", for: .normal)
+        }else{
+            startPressed = false;
+            self.startButton.backgroundColor = UIColor.green
+            //self.startButton.isEnabled = true
+            self.startButton.setTitle("Start", for: .normal)
+        }
+    }
     //点击录制/暂停
     @IBAction 
     private func startVideo(_ sender:UIButton) {
@@ -1037,8 +1099,8 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             frametot = 0
             frametotA = 0
             saving = true
-            startButton.backgroundColor = UIColor.red
-            startButton.setTitle("Stop", for: .normal)
+            recordButton.backgroundColor = UIColor.red
+            recordButton.setTitle("Recording", for: .normal)
             uploadButton.isEnabled = false
             stepState = -1
             setflag = false
@@ -1047,7 +1109,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             gifView = UIImageView(image: jeremyGif)
             let jwidth = jetView.frame.width
             let gifheight = CGFloat(bl) * jwidth
-            let startbuttony = self.startButton.frame.minY
+            let startbuttony = self.recordButton.frame.minY
             imageView = UIView()
             imageView.backgroundColor = UIColor.black
 //            imageView.frame = CGRect(x: 0.0, y: startbuttony - gifheight - 30, width: jwidth, height: gifheight + 30)
@@ -1068,7 +1130,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             }
             imageView.addSubview(gifView)
             view.addSubview(imageView)
-            print(self.startButton.frame.minY, startbuttony - gifheight - 30,gifheight + 30)
+            print(self.recordButton.frame.minY, startbuttony - gifheight - 30,gifheight + 30)
         }else{
             stop();
         }
@@ -1080,7 +1142,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         let al = BartAlertController.init(title: "提示", message: "请输入患者名称")
     
         let test = UITextField()
-        test.placeholder = "test"
+        test.placeholder = "例如：LiMing"
         test.textColor = UIColor.black
         al.addTextField(textfield: test)
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -1101,6 +1163,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             self.changeFileName(filename + "d",dmkv,path,1)
             let gmkv = path + "/g.mkv"
             self.changeFileName(filename + "g",gmkv,path,1)
+            self.view.makeToast("已录制成功，请上传",duration: 2.2, position: .center)
         }
         al.addAction(action: act)
         al.addAction(action: act3)
@@ -1206,8 +1269,8 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         else {
           if(!isRecording){
               DispatchQueue.main.async {
-                  self.startButton.backgroundColor = UIColor.gray
-                  self.startButton.isEnabled = false
+                  self.recordButton.backgroundColor = UIColor.gray
+                  self.recordButton.isEnabled = false
               }
           }
           return
@@ -1292,8 +1355,8 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
 
           }
           if(avSpeech.isSpeaking == false && stepState == 5 && saving == true){
-              speechText = "请稍微抬头"
-              startTranslattion(postDelay: 0.5,preDelay: 0.0)
+              //speechText = "请稍微抬头"
+              //startTranslattion(postDelay: 0.5,preDelay: 0.0)
               stepState = stepState + 1
           }
           if(avSpeech.isSpeaking == false && stepState == 6 && saving == true){
@@ -1420,31 +1483,33 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
       let isAcceptablePos = (x < 0.5) && (x > 0.0) && (y < 0.5) && (y > 0.0)
       print(x,y)
       let isAcceptableSize = (box.width > 0.4) && (box.height > 0.4)
-        if(isAcceptableRoll && isAcceptablePitch && isAcceptableYaw && isAcceptablePos && isAcceptableSize){
+        if(startPressed == true && isAcceptableRoll && isAcceptablePitch && isAcceptableYaw && isAcceptablePos && isAcceptableSize){
             DispatchQueue.main.async {
-                self.startButton.backgroundColor = UIColor.green
-                self.startButton.isEnabled = true
+                self.recordButton.backgroundColor = UIColor.green
+                self.recordButton.isEnabled = true
             }
         }else{
             DispatchQueue.main.async {
-                self.startButton.backgroundColor = UIColor.gray
-                self.startButton.isEnabled = false
+                self.recordButton.backgroundColor = UIColor.gray
+                self.recordButton.isEnabled = false
             }
         }
         print(box.width)
-        if(!isAcceptableSize && avSpeech.isSpeaking == false){
-            speechText = "请靠近一点"
-            startTranslattion(postDelay: 1.0,preDelay: 0.0)
-        }else if( (box.width > 0.8) && avSpeech.isSpeaking == false){
-            speechText = "请远离一点"
-            startTranslattion(postDelay: 1.0,preDelay: 0.0)
-        }
-        else if(!isAcceptablePos && avSpeech.isSpeaking == false){
-            speechText = "请保持人脸在屏幕中心"
-            startTranslattion(postDelay: 1.0,preDelay: 0.0)
-        }else if((!isAcceptableRoll || !isAcceptableYaw || !isAcceptablePitch) && avSpeech.isSpeaking == false){
-            speechText = "请保持人脸呈现端正姿态"
-            startTranslattion(postDelay: 1.0,preDelay: 0.0)
+        if(startPressed == true){
+            if(!isAcceptableSize && avSpeech.isSpeaking == false){
+                speechText = "请靠近一点"
+                startTranslattion(postDelay: 1.0,preDelay: 0.0)
+            }else if( (box.width > 0.8) && avSpeech.isSpeaking == false){
+                speechText = "请远离一点"
+                startTranslattion(postDelay: 1.0,preDelay: 0.0)
+            }
+            else if(!isAcceptablePos && avSpeech.isSpeaking == false){
+                speechText = "请保持人脸在屏幕中心"
+                startTranslattion(postDelay: 1.0,preDelay: 0.0)
+            }else if((!isAcceptableRoll || !isAcceptableYaw || !isAcceptablePitch) && avSpeech.isSpeaking == false){
+                speechText = "请保持人脸呈现端正姿态"
+                startTranslattion(postDelay: 1.0,preDelay: 0.0)
+            }
         }
 //      // 4
 //      DispatchQueue.main.async {

@@ -14,8 +14,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1528"
-            endingLineNumber = "1528"
+            startingLineNumber = "1593"
+            endingLineNumber = "1593"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1542"
-            endingLineNumber = "1542"
+            startingLineNumber = "1607"
+            endingLineNumber = "1607"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "20"
             endingColumnNumber = "20"
-            startingLineNumber = "1529"
-            endingLineNumber = "1529"
+            startingLineNumber = "1549"
+            endingLineNumber = "1549"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1560"
-            endingLineNumber = "1560"
+            startingLineNumber = "1625"
+            endingLineNumber = "1625"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "TrueDepthStreamer/CameraViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1565"
-            endingLineNumber = "1565"
+            startingLineNumber = "1630"
+            endingLineNumber = "1630"
             landmarkName = "dataOutputSynchronizer(_:didOutput:)"
             landmarkType = "7">
          </BreakpointContent>
