@@ -91,7 +91,7 @@
 		CCCD7910CCCD7C9000000001 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		CCE67AC0CCE54C5000000001 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		E414FC6C1D5921FD0007C979 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E422DFB71CEF894F0047D7A4 /* TrueDepthStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueDepthStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E422DFB71CEF894F0047D7A4 /* DigiFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigiFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E422DFBF1CEF894F0047D7A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E422DFC11CEF894F0047D7A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E422DFC41CEF894F0047D7A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 		E422DFB81CEF894F0047D7A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E422DFB71CEF894F0047D7A4 /* TrueDepthStreamer.app */,
+				E422DFB71CEF894F0047D7A4 /* DigiFace.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,9 +292,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E422DFB61CEF894F0047D7A4 /* TrueDepthStreamer */ = {
+		E422DFB61CEF894F0047D7A4 /* DigiFace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E422DFC91CEF894F0047D7A4 /* Build configuration list for PBXNativeTarget "TrueDepthStreamer" */;
+			buildConfigurationList = E422DFC91CEF894F0047D7A4 /* Build configuration list for PBXNativeTarget "DigiFace" */;
 			buildPhases = (
 				E255DFAFCE9164905182B1B4 /* [CP] Check Pods Manifest.lock */,
 				E422DFB31CEF894F0047D7A4 /* Sources */,
@@ -306,9 +306,9 @@
 			);
 			dependencies = (
 			);
-			name = TrueDepthStreamer;
+			name = DigiFace;
 			productName = TrueDepthViewer;
-			productReference = E422DFB71CEF894F0047D7A4 /* TrueDepthStreamer.app */;
+			productReference = E422DFB71CEF894F0047D7A4 /* DigiFace.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -329,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E422DFB21CEF894F0047D7A4 /* Build configuration list for PBXProject "TrueDepthStreamer" */;
+			buildConfigurationList = E422DFB21CEF894F0047D7A4 /* Build configuration list for PBXProject "DigiFace" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -342,7 +342,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E422DFB61CEF894F0047D7A4 /* TrueDepthStreamer */,
+				E422DFB61CEF894F0047D7A4 /* DigiFace */,
 			);
 		};
 /* End PBXProject section */
@@ -646,7 +646,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E422DFB21CEF894F0047D7A4 /* Build configuration list for PBXProject "TrueDepthStreamer" */ = {
+		E422DFB21CEF894F0047D7A4 /* Build configuration list for PBXProject "DigiFace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E422DFC71CEF894F0047D7A4 /* Debug */,
@@ -655,7 +655,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E422DFC91CEF894F0047D7A4 /* Build configuration list for PBXNativeTarget "TrueDepthStreamer" */ = {
+		E422DFC91CEF894F0047D7A4 /* Build configuration list for PBXNativeTarget "DigiFace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E422DFCA1CEF894F0047D7A4 /* Debug */,

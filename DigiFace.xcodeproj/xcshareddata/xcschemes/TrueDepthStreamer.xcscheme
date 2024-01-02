@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E422DFB61CEF894F0047D7A4"
-               BuildableName = "TrueDepthStreamer.app"
-               BlueprintName = "TrueDepthStreamer"
-               ReferencedContainer = "container:TrueDepthStreamer.xcodeproj">
+               BuildableName = "DigiFace.app"
+               BlueprintName = "DigiFace"
+               ReferencedContainer = "container:DigiFace.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E422DFB61CEF894F0047D7A4"
-            BuildableName = "TrueDepthStreamer.app"
-            BlueprintName = "TrueDepthStreamer"
-            ReferencedContainer = "container:TrueDepthStreamer.xcodeproj">
+            BuildableName = "DigiFace.app"
+            BlueprintName = "DigiFace"
+            ReferencedContainer = "container:DigiFace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E422DFB61CEF894F0047D7A4"
-            BuildableName = "TrueDepthStreamer.app"
-            BlueprintName = "TrueDepthStreamer"
-            ReferencedContainer = "container:TrueDepthStreamer.xcodeproj">
+            BuildableName = "DigiFace.app"
+            BlueprintName = "DigiFace"
+            ReferencedContainer = "container:DigiFace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

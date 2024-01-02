@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:TrueDepthStreamer.xcodeproj">
+      location = "group:/Users/iosDeveloper/Desktop/iphone/DigiFace.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
