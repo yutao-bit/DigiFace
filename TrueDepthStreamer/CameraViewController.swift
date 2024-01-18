@@ -993,7 +993,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
         print("sure stop!",frametot,frametotA)
         CameraViewController.cameraframe = "\(frametot)"
         self.view.makeToastActivityWithText(.center)
-        UIView.sharedlabel.text = "预计：" + String(frametotA / 5) + "S"
+        UIView.sharedlabel.text = "预计" + String(frametotA / 5) + "秒"
         recordButton.isEnabled = false
         startButton.isEnabled = false
         videoSaveQueue.async {
@@ -1010,7 +1010,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
                 usleep(1500000)
                 self.view.makeToastActivityWithText(.center)
                 //UIView.sharedlabel.text = "剩余：" + String(self.frametotA / 5 * 86 / 100) + "S"
-                UIView.sharedlabel.text = "|||..............."
+                UIView.sharedlabel.text = "Save:||........."
             }
             
             let ss0 = "-i \(path)/%d.JPG -r 20 -codec copy \(path)/g.mkv"
@@ -1021,7 +1021,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
                 usleep(1500000)
                 self.savingPercentage = self.savingPercentage + 200 / 7
                 //UIView.sharedlabel.text = "剩余：" + String(self.frametotA / 5 * 65 / 100) + "S"
-                UIView.sharedlabel.text = "|||||||..........."
+                UIView.sharedlabel.text = "Save:|||||......"
             }
             
             MobileFFmpeg.execute("-i \(path)/%d.JPG -r 24 -vcodec libx264 -crf 8 -pix_fmt yuv420p  \(path)/g.mp4")
@@ -1033,7 +1033,7 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
             
             DispatchQueue.main.async {
                 self.savingPercentage = 100
-                UIView.sharedlabel.text = "||||||||||||||||||"
+                UIView.sharedlabel.text = "Save:|||||||||||"
             }
             print("save ready");/**/
             usleep(2000000)
@@ -1355,8 +1355,8 @@ class CameraViewController: UIViewController, AVCaptureDataOutputSynchronizerDel
 
           }
           if(avSpeech.isSpeaking == false && stepState == 5 && saving == true){
-              //speechText = "请稍微抬头"
-              //startTranslattion(postDelay: 0.5,preDelay: 0.0)
+              speechText = "请稍微抬头"
+              startTranslattion(postDelay: 0.5,preDelay: 0.0)
               stepState = stepState + 1
           }
           if(avSpeech.isSpeaking == false && stepState == 6 && saving == true){
